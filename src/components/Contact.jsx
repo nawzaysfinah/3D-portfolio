@@ -7,6 +7,10 @@ import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
+// template_u9usrvk
+// service_ggzqefe
+// NBiRyZckHfolab85A
+
 const Contact = () => {
   const formRef = useRef();
   const [form, setForm] = useState({
@@ -16,8 +20,47 @@ const Contact = () => {
   });
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {};
-  const handleSubmit = (e) => {};
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    // template_u9usrvk
+    // service_ggzqefe
+    // NBiRyZckHfolab85A
+    emailjs
+      .send(
+        "service_ggzqefe",
+        "template_u9usrvk",
+        {
+          from_name: form.name,
+          to_name: "Syaz",
+          from_email: form.email,
+          to_email: "nawzaysfinah@gmail.com",
+          message: form.message,
+        },
+        "NBiRyZckHfolab85A"
+      )
+      .then(
+        () => {
+          setLoading(false);
+          alert("Thank you! I will get back to you, as soon as possible");
+
+          setForm({
+            name: "",
+            email: "",
+            message: "",
+          });
+        },
+        (error) => {
+          setLoading(false);
+          console.log(error);
+          alert("Something went wrong");
+        }
+      );
+  };
 
   return (
     <div className="xl:mt-12 xl:flex-row flex-column-reverse flex gap-10 overflow-hidden">
